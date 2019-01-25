@@ -6,17 +6,19 @@
 
 # 	def scrape_page
 
+		students = []
+
 		page = Nokogiri::HTML(open("https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die"))
 		page.css("div.leftContainer").each do |container|
 			container.css("div.elementList").each do |element|
 				title = element.css("a.leftAlignedImage").attr('title').text
 				author = element.css("div.authorName__container a").text
-				info = element.css("span.greyText").text
-				binding.pry
+				published = element.css("span.greyText").text.gsub(/\s+/, "")[-4..-1]
+				students << { :book_title => title, :book_author => author, :book_published => published}
 			end
 		end
 
-		books = []
+		binding.pry
 
 
 		# page.css("div.leftContainer").each do |container|
