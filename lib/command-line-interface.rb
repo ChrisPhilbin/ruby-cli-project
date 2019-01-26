@@ -13,6 +13,22 @@ class CommandLineInterface
 		Book.create_from_list(book_array)
 	end
 
+	def set_book_age
+		Book.all.each do |book|
+			book.book_age = Time.now.year - self.book_published.to_i
+		end
+	end
+
+end
+
+user_input = ""
+
+while user_input != "exit"
+	puts "Welcome to the best books gem! This gem will scrape the website Good Reads and return a current list of their 100 books to read before you die!"
+	puts "Please enter a selection based on the below:"
+	puts "Enter 'list' to get the most current list of books, in order from best to worst."
+	puts "Enter 'random' to get the list, but in random order."
+	puts 'Enter 'exit' to exit this program."
 end
 
 binding.pry
