@@ -20,7 +20,10 @@ class CommandLineInterface
 	end
 
 	def random
-		Book.all.shuffle
+		random_books = Book.all.shuffle
+		random_books.each_with_index(1) do |book, index|
+			puts "#{index}. #{book.book_title} by #{book.book_author}"
+		end
 	end
 
 
