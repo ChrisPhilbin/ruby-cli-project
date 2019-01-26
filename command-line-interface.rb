@@ -1,5 +1,5 @@
-require_relative "../lib/scraper.rb"
-require_relative "../lib/book.rb"
+require_relative "../scraper.rb"
+require_relative "../book.rb"
 
 require 'nokogiri'
 require 'pry'

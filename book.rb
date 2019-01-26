@@ -5,7 +5,7 @@ class Book
 
   def initialize(book_hash)
     book_hash.each do |key, value|
-      send("#{key}=", value)
+      self.send("#{key}=", value)
       @@all << self
     end
    end
