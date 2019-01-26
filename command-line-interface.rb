@@ -1,7 +1,8 @@
 require_relative "../lib/scraper.rb"
-require_relative "../lib/scraper.rb"
+require_relative "../lib/book.rb"
 
 require 'nokogiri'
+require 'pry'
 
 class CommandLineInterface
 
@@ -12,7 +13,8 @@ class CommandLineInterface
 		Book.create_from_list(book_array)
 	end
 
-
-
-
 end
+
+make_book_list
+
+binding.pry

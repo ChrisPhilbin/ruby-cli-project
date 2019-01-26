@@ -1,5 +1,5 @@
 class Book
-  attr_accessor :book_title, :book_author, :book_published
+  attr_accessor :book_title, :book_author, :book_published, :book_age
 
   @@all = []
 
@@ -15,6 +15,12 @@ class Book
       Book.new(book_hash)
     end
    end
+
+  def calculate_book_age
+    self.all.each do |book|
+      book.book_age = Time.now.year - self.book_published.to_i
+    end
+  end
 
   def self.all
     @@all
