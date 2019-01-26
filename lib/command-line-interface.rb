@@ -19,6 +19,10 @@ class CommandLineInterface
 		end
 	end
 
+	def random
+		Book.all.shuffle
+	end
+
 
 	def call
 		user_input = ""
