@@ -17,6 +17,6 @@ class Scraper
         books_array << { book_title: title, book_author: author, book_published: published }
       end
     end
-    students
+    books_array
   end
 end
