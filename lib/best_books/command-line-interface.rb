@@ -27,6 +27,9 @@ class CommandLineInterface
 		random_books
 	end
 
+	def self.goodbye
+		puts "See you later! Goodbye!"
+	end
 
 	def call
 		user_input = ""
@@ -38,13 +41,15 @@ class CommandLineInterface
 			puts "Enter 'random' to get the list, but in random order."
 			puts "Enter 'exit' to exit this program."
 
-			user_input = gets.chomp
+			user_input = gets.chomp.downcase
 
 			case user_input
 			when "list"
 				make_book_list
 			when "random"
 				make_random_list
+			when "exit"
+				goodbye
 			end
 		end
 	end
