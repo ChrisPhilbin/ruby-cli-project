@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/best_books'
+
+CommandLineInterface.new.call #Starts the program
