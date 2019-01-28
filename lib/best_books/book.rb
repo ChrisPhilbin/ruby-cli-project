@@ -17,12 +17,6 @@ class Book
     end
    end
 
-  def calculate_book_age
-    self.all.each do |book|
-      book.book_age = Time.now.year - self.book_published.to_i
-    end
-  end
-
   def self.all
     @@all
   end
