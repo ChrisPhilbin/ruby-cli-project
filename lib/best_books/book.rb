@@ -11,8 +11,8 @@ class Book
     end
    end
 
-  def self.create_from_list(books)
-    books.each do |book_hash|
+  def self.create_from_list(book_array)
+    book_array.each do |book_hash|
       Book.new(book_hash)
     end
    end
