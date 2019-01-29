@@ -17,8 +17,13 @@ class CommandLineInterface
 	end
 
 	def self.set_book_age
-		Book.all.each do |book|
-			book.book_age = Time.now.year - self.book_published.to_i
+		if Book.all.empty?
+			puts "There are no books to calculate the age of! Please try creating a list first and then try again!"
+		else
+			Book.all.each do |book|
+				book.book_age = Time.now.year - book.book_published.to_i
+				puts "#{book.book_title} is #{book.book_age} years old!"
+			end
 		end
 	end
 
@@ -46,6 +51,7 @@ class CommandLineInterface
 			puts "Please enter a selection based on the below:"
 			puts "Enter 'list' to get the most current list of books, in order from best to worst."
 			puts "Enter 'random' to get the list, but in random order."
+			puts "Enter 'age' to calculate the age of the books"
 			puts "Enter 'exit' to exit this program."
 
 			user_input = gets.chomp.downcase
@@ -55,6 +61,8 @@ class CommandLineInterface
 				CommandLineInterface.make_book_list
 			when "random"
 				CommandLineInterface.make_random_list
+			when "age"
+				CommandLineInterface.set_book_age
 			when "exit"
 				CommandLineInterface.goodbye
 			end
