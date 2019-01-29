@@ -12,7 +12,7 @@ class CommandLineInterface
 		book_array = Scraper.scrape_page(page_url)
 		Book.create_from_list(book_array)
 		Book.all.each_with_index do |book, index|
-			puts "#{index+1}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
+			puts "#{index + 1}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
 		end
 	end
 
@@ -23,11 +23,15 @@ class CommandLineInterface
 	end
 
 	def self.make_random_list
-		random_books = Book.all.shuffle
-		random_books.each_with_index.map do |book, index|
-			puts "#{index}. #{book.book_title} by #{book.book_author}, published in #{book.book_published}"
+		if Book.all.empty?
+			puts "There are no books to shuffle! Please try creating a list first and then try again!"
+		else
+			random_books = Book.all.shuffle
+			random_books.each_with_index.map do |book, index|
+				puts "#{index + 1}. #{book.book_title} by #{book.book_author}, published in #{book.book_published}"
+			end
+			random_books
 		end
-		random_books
 	end
 
 	def self.goodbye
