@@ -20,4 +20,3 @@ class Scraper
     books_array
   end
 end
-
