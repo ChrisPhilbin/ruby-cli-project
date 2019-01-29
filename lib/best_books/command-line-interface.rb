@@ -8,9 +8,12 @@ class CommandLineInterface
 
 	page_url = "https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die"
 
-	def self.make_book_list(page_url)
+	def self.make_book_list(page_url = "https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die")
 		book_array = Scraper.scrape_page(page_url)
 		Book.create_from_list(book_array)
+		Book.all.each_with_index do |book, index|
+			puts "#{index+1}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
+		end
 	end
 
 	def self.set_book_age
@@ -45,14 +48,12 @@ class CommandLineInterface
 
 			case user_input
 			when "list"
-				make_book_list
+				CommandLineInterface.make_book_list
 			when "random"
-				make_random_list
+				CommandLineInterface.make_random_list
 			when "exit"
-				goodbye
+				CommandLineInterface.goodbye
 			end
 		end
 	end
-
-binding.pry
 end

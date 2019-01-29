@@ -18,6 +18,6 @@ class Book
    end
 
   def self.all
-    @@all
+    @@all.uniq
   end
 end
