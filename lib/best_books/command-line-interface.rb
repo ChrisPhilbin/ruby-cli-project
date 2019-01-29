@@ -53,5 +53,6 @@ class CommandLineInterface
 			end
 		end
 	end
+
 binding.pry
 end
