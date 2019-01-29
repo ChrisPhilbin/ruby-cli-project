@@ -2,4 +2,4 @@
 
 require './lib/best_books'
 
-CommandLineInterface.new.call # Starts the program
+CommandLineInterface.new.call # Create a new CommandLineInterface object then call the function 'call' to start the program

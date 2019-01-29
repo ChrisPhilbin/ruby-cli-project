@@ -17,7 +17,7 @@ class CommandLineInterface
 
   def self.set_book_age
     if Book.all.empty?
-      puts 'There are no books to calculate the age of! Please try creating a list first and then try again!'
+      try_again
     else
       Book.all.each do |book|
         book.book_age = Time.now.year - book.book_published.to_i
@@ -28,7 +28,7 @@ class CommandLineInterface
 
   def self.make_random_list
     if Book.all.empty?
-      puts 'There are no books to shuffle! Please try creating a list first and then try again!'
+      try_again
     else
       random_books = Book.all.shuffle
       random_books.each_with_index.map do |book, index|
@@ -36,6 +36,10 @@ class CommandLineInterface
       end
       random_books
     end
+  end
+
+  def self.try_again
+  	puts 'There are no books to shuffle! Please try creating a list first and then try again!'
   end
 
   def self.goodbye
