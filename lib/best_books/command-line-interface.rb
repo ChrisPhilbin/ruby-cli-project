@@ -8,10 +8,22 @@ class CommandLineInterface
   def make_book_list(page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die')
     book_array = Scraper.scrape_page(page_url)
     Book.create_from_list(book_array)
-#build out pagination for 1 - 25 items, then 26 - 50.
-    Book.all.each_with_index do |book, index|
+    Book.all[0..24].each_with_index do |book, index|
       puts "#{index + 1}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
     end
+    input = ''
+    while input != 'yes' && input != 'no'
+    puts "Would you like to print the remainder of the list? yes/no"
+    input = gets.chomp.downcase
+    if input == "no"
+    	call
+    else input == "yes"
+		Book.all[25..-1].each_with_index do |book, index|
+      		puts "#{index + 26}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
+      	end
+    end
+
+    end    	
   end
 
   def set_book_age
