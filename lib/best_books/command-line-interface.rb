@@ -2,7 +2,6 @@ require_relative '../best_books/scraper.rb'
 require_relative '../best_books/book.rb'
 
 require 'nokogiri'
-require 'pry'
 
 class CommandLineInterface
   page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die'
