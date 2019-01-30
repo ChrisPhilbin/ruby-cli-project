@@ -7,7 +7,7 @@ require 'pry'
 class CommandLineInterface
   page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die'
 
-  def self.make_book_list(page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die')
+  def make_book_list(page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die')
     book_array = Scraper.scrape_page(page_url)
     Book.create_from_list(book_array)
     Book.all.each_with_index do |book, index|
@@ -15,7 +15,7 @@ class CommandLineInterface
     end
   end
 
-  def self.set_book_age
+  def set_book_age
     if Book.all.empty?
       try_again
     else
@@ -26,7 +26,7 @@ class CommandLineInterface
     end
   end
 
-  def self.make_random_list
+  def make_random_list
     if Book.all.empty?
       try_again
     else
@@ -38,11 +38,11 @@ class CommandLineInterface
     end
   end
 
-  def self.try_again
+  def try_again
   	puts 'There are no books to shuffle! Please try creating a list first and then try again!'
   end
 
-  def self.goodbye
+  def goodbye
     puts 'See you later! Goodbye!'
   end
 
@@ -61,13 +61,15 @@ class CommandLineInterface
 
       case user_input
       when 'list'
-        CommandLineInterface.make_book_list
+        make_book_list
       when 'random'
-        CommandLineInterface.make_random_list
+        make_random_list
       when 'age'
-        CommandLineInterface.set_book_age
+        set_book_age
+      when 'sort'
+      	sort_by_age
       when 'exit'
-        CommandLineInterface.goodbye
+        goodbye
       end
     end
   end
