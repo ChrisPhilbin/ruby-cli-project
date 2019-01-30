@@ -1,3 +1,3 @@
+gem 'best_books'
 gem 'nokogiri'
 gem 'pry'
-gem 'best_books'

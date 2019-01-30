@@ -9,17 +9,17 @@ class CommandLineInterface
     end
     input = ''
     while input != 'yes' && input != 'no'
-    puts "Would you like to print the remainder of the list? yes/no"
-    input = gets.chomp.downcase
-    if input == "no"
-    	call
-    else input == "yes"
-		Book.all[25..-1].each_with_index do |book, index|
-      		puts "#{index + 26}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
-      	end
-    end
+      puts 'Would you like to print the remainder of the list? yes/no'
+      input = gets.chomp.downcase
+      if input == 'no'
+        call
+      else input == 'yes'
+           Book.all[25..-1].each_with_index do |book, index|
+             puts "#{index + 26}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
+           end
+      end
 
-    end    	
+    end
   end
 
   def set_book_age
@@ -46,7 +46,7 @@ class CommandLineInterface
   end
 
   def try_again
-  	puts 'There are no books to shuffle! Please try creating a list first and then try again!'
+    puts 'There are no books to shuffle! Please try creating a list first and then try again!'
   end
 
   def goodbye
@@ -57,12 +57,16 @@ class CommandLineInterface
     user_input = ''
 
     while user_input != 'exit'
-      puts 'Welcome to the best books gem! This gem will scrape the website Good Reads and return a current list of their 100 books to read before you die!'
+      puts '##############################################################'
+      puts 'Welcome to the best books gem!'
+      puts 'This gem will scrape the website Good Reads and return a current list of their 50 books to read before you die!'
+      puts '--------------------------------------------------------------'
       puts 'Please enter a selection based on the below:'
       puts "Enter 'list' to get the most current list of books, in order from best to worst."
       puts "Enter 'random' to get the list, but in random order."
       puts "Enter 'age' to calculate the age of the books"
       puts "Enter 'exit' to exit this program."
+      puts '##############################################################'
 
       user_input = gets.chomp.downcase
 
@@ -74,10 +78,10 @@ class CommandLineInterface
       when 'age'
         set_book_age
       when 'sort'
-      	sort_by_age
+        sort_by_age
       when 'exit'
         goodbye
-        #add inlvaid input functionality here
+        # add inlvaid input functionality here
       end
     end
   end
