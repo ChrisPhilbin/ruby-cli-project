@@ -1,5 +1,5 @@
 class Book
-  attr_accessor :book_title, :book_author, :book_published, :book_age
+  attr_accessor :book_title, :book_author, :book_published, :book_age, :book_description
 
   @@all = []
 
