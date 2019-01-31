@@ -81,7 +81,8 @@ class CommandLineInterface
         sort_by_age
       when 'exit'
         goodbye
-        # add inlvaid input functionality here
+       else
+       	puts "Invalid selection! Please try again!"
       end
     end
   end
