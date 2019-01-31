@@ -1,7 +1,6 @@
+require 'nokogiri'
 require_relative '../best_books/scraper.rb'
 require_relative '../best_books/book.rb'
-
-require 'nokogiri'
 
 class CommandLineInterface
   page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die'
@@ -9,6 +8,7 @@ class CommandLineInterface
   def make_book_list(page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die')
     book_array = Scraper.scrape_page(page_url)
     Book.create_from_list(book_array)
+#build out pagination for 1 - 25 items, then 26 - 50.
     Book.all.each_with_index do |book, index|
       puts "#{index + 1}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
     end
@@ -69,6 +69,7 @@ class CommandLineInterface
       	sort_by_age
       when 'exit'
         goodbye
+        #add inlvaid input functionality here
       end
     end
   end
