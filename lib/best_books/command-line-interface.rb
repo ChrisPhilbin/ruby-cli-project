@@ -8,15 +8,14 @@ class CommandLineInterface
       puts "#{index + 1}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
     end
     input = ''
-    while input != 'yes' && input != 'no'
-      puts 'Would you like to print the remainder of the list? yes/no'
+    while input != 'no'
+      puts 'Would you like to print the remainder of the list? (type "yes/no")'
       input = gets.chomp.downcase
-      if input == 'no'
-        call
-      else input == 'yes'
+      if input == 'yes'
            Book.all[25..-1].each_with_index do |book, index|
              puts "#{index + 26}. #{book.book_title} by #{book.book_author} written in #{book.book_published}"
            end
+           break
       end
 
     end
@@ -45,6 +44,20 @@ class CommandLineInterface
     end
   end
 
+  def get_book_description
+    if Book.all.empty?
+      puts "Please generate the list first and then try again!"
+    else
+      puts "Please enter a number from the list in order to view more details about the book:"
+      selection = gets.to_i
+      if selection.between?(1, 50)
+        puts "#{Book.all[selection - 1].book_description}"
+      else
+        puts "Number is out of range! Please try again!"
+      end
+    end
+  end
+
   def try_again
     puts 'There are no books to shuffle! Please try creating a list first and then try again!'
   end
@@ -59,10 +72,12 @@ class CommandLineInterface
     while user_input != 'exit'
       puts '##############################################################'
       puts 'Welcome to the best books gem!'
+      puts ' '
       puts 'This gem will scrape the website Good Reads and return a current list of their 50 books to read before you die!'
       puts '--------------------------------------------------------------'
       puts 'Please enter a selection based on the below:'
       puts "Enter 'list' to get the most current list of books, in order from best to worst."
+      puts "Enter 'desc' to get the description of a book you'd like to find out more about."
       puts "Enter 'random' to get the list, but in random order."
       puts "Enter 'age' to calculate the age of the books"
       puts "Enter 'exit' to exit this program."
@@ -73,6 +88,8 @@ class CommandLineInterface
       case user_input
       when 'list'
         make_book_list
+      when 'desc'
+        get_book_description
       when 'random'
         make_random_list
       when 'age'
