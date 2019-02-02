@@ -20,7 +20,7 @@ class Scraper
         published = element.css('span.greyText').text.gsub(/\s+/, '')[-4..-1]
         book_description_url = element.css('a.bookTitle').attr('href').value
         book_details_page = Nokogiri::HTML(open(BASE_URL + book_description_url))
-        book_description = book_details_page.css('div.last.col div.readable.stacked').text
+        book_description = book_details_page.css('div.last.col div.readable.stacked span').text
         books_array << { book_title: title, book_author: author, book_published: published, book_description: book_description }
         binding.pry
       end
@@ -28,5 +28,3 @@ class Scraper
     books_array
   end
 end
-
-Scraper.scrape_page
