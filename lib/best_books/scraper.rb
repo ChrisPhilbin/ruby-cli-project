@@ -21,8 +21,8 @@ class Scraper
         book_description_url = element.css('a.bookTitle').attr('href').value
         book_details_page = Nokogiri::HTML(open(BASE_URL + book_description_url))
         book_description = book_details_page.css('div.last.col div.readable.stacked').text
-        binding.pry
         books_array << { book_title: title, book_author: author, book_published: published, book_description: book_description }
+        binding.pry
       end
     end
     books_array
