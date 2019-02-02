@@ -1,7 +1,7 @@
 class CommandLineInterface
   page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die'
 
-  def make_book_list(page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die')
+  def make_book_list(page_url)
     book_array = Scraper.scrape_page(page_url)
     Book.create_from_list(book_array)
     Book.all[0..24].each_with_index do |book, index|
@@ -51,6 +51,7 @@ class CommandLineInterface
       puts "Please enter a number from the list in order to view more details about the book:"
       selection = gets.to_i
       if selection.between?(1, 50)
+        puts "Here's a brief description of #{Book.all[selection - 1].book_title}"
         puts "#{Book.all[selection - 1].book_description}"
       else
         puts "Number is out of range! Please try again!"
@@ -87,6 +88,7 @@ class CommandLineInterface
 
       case user_input
       when 'list'
+        puts "Hang tight... this might take a minute..."
         make_book_list
       when 'desc'
         get_book_description
