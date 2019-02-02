@@ -1,7 +1,8 @@
 class CommandLineInterface
-  page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die'
 
-  def make_book_list(page_url)
+  page_url = 'https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die'
+  
+  def make_book_list(page_url = "https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die")
     book_array = Scraper.scrape_page(page_url)
     Book.create_from_list(book_array)
     Book.all[0..24].each_with_index do |book, index|

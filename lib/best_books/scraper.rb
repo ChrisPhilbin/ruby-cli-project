@@ -1,10 +1,5 @@
 require 'nokogiri'
 require 'open-uri'
-require 'pry'
-
-# "https://www.goodreads.com/shelf/show/100-books-to-read-before-you-die"
-#add book_details_url to the books_array
-#scrape each book details page to obtain the summary of each book and save it to the array
 
 BASE_URL = "https://www.goodreads.com/"
 
@@ -22,7 +17,6 @@ class Scraper
         book_details_page = Nokogiri::HTML(open(BASE_URL + book_description_url))
         book_description = book_details_page.css('div.last.col div.readable.stacked span').text
         books_array << { book_title: title, book_author: author, book_published: published, book_description: book_description }
-        binding.pry
       end
     end
     books_array
